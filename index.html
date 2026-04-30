@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESV Consulting LLC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #1B3A6B;
+      --gold:   #B8960A;
+      --ink:    #1a1a1a;
+      --smoke:  #f5f4f1;
+      --mist:   #e8e6e1;
+      --ash:    #7a7670;
+      --white:  #fdfcfa;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      background: var(--white);
+      color: var(--ink);
+      line-height: 1.7;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── HEADER ─────────────────────────────────── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.5rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--white);
+      border-bottom: 1px solid var(--mist);
+    }
+
+    .wordmark {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 1.1rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--navy);
+    }
+
+    nav {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    nav a {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ash);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--navy); }
+
+    .nav-cta {
+      font-size: 0.65rem !important;
+      letter-spacing: 0.15em !important;
+      color: var(--white) !important;
+      background: var(--navy);
+      padding: 0.6rem 1.4rem;
+      text-decoration: none;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--gold) !important; }
+
+    /* ── HERO ────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 5rem;
+    }
+
+    .hero-left {
+      background: var(--navy);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -20%;
+      width: 60%;
+      padding-bottom: 60%;
+      border-radius: 50%;
+      border: 1px solid rgba(184, 150, 10, 0.15);
+      pointer-events: none;
+    }
+
+    .hero-left::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 50%;
+      padding-bottom: 50%;
+      border-radius: 50%;
+      border: 1px solid rgba(184, 150, 10, 0.08);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2.8rem, 4vw, 4.2rem);
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 2rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .hero-sub {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.8;
+      max-width: 32ch;
+      border-left: 1px solid var(--gold);
+      padding-left: 1.2rem;
+    }
+
+    .hero-right {
+      background: var(--smoke);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 5rem;
+    }
+
+    .hero-statement {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+      line-height: 1.75;
+      color: var(--ink);
+      margin-bottom: 3rem;
+    }
+
+    .hero-statement strong {
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .credentials-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 3rem;
+    }
+
+    .badge {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--navy);
+      border: 1px solid var(--mist);
+      padding: 0.4rem 0.9rem;
+      background: var(--white);
+    }
+
+    .badge.gold {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--navy);
+      padding: 0.9rem 2rem;
+      text-decoration: none;
+      transition: background 0.2s;
+      align-self: flex-start;
+    }
+
+    .download-btn:hover { background: var(--gold); }
+
+    .download-btn svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    /* ── RULE ────────────────────────────────────── */
+    .rule {
+      height: 1px;
+      background: var(--mist);
+      margin: 0 4rem;
+    }
+
+    /* ── SERVICES ────────────────────────────────── */
+    #services {
+      padding: 7rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 3.5rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--mist);
+    }
+
+    .service-block {
+      background: var(--white);
+      padding: 3.5rem;
+    }
+
+    .service-block:nth-child(odd) {
+      background: var(--smoke);
+    }
+
+    .service-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--mist);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.3rem;
+      color: var(--navy);
+      margin-bottom: 1rem;
+      letter-spacing: 0.02em;
+    }
+
+    .service-desc {
+      font-size: 0.78rem;
+      color: var(--ash);
+      line-height: 1.8;
+      margin-bottom: 1.8rem;
+    }
+
+    .service-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .service-list li {
+      font-size: 0.72rem;
+      color: var(--ink);
+      letter-spacing: 0.03em;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .service-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 0.65rem;
+    }
+
+    /* ── WHO WE SERVE ────────────────────────────── */
+    #clients {
+      background: var(--navy);
+      padding: 6rem 4rem;
+    }
+
+    .clients-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .clients-left .section-label { color: var(--gold); }
+
+    .clients-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 2rem;
+      color: var(--white);
+      line-height: 1.3;
+      margin-top: 1rem;
+    }
+
+    .clients-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: rgba(255,255,255,0.08);
+      margin-top: 2.5rem;
+    }
+
+    .client-item {
+      background: rgba(255,255,255,0.03);
+      padding: 2rem 2.5rem;
+      border-left: 2px solid transparent;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .client-item:hover {
+      border-left-color: var(--gold);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .client-name {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .client-desc {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.6;
+    }
+
+    /* ── CREDENTIALS ─────────────────────────────── */
+    #credentials {
+      padding: 6rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .credentials-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--mist);
+      margin-top: 3rem;
+    }
+
+    .credential-item {
+      background: var(--white);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+
+    .credential-item:nth-child(odd) {
+      background: var(--smoke);
+    }
+
+    .credential-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.05em;
+    }
+
+    .credential-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ash);
+    }
+
+    /* ── CONTACT ─────────────────────────────────── */
+    #contact {
+      background: var(--smoke);
+      padding: 6rem 4rem;
+      border-top: 1px solid var(--mist);
+    }
+
+    .contact-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .contact-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 2.4rem;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-top: 1rem;
+    }
+
+    .contact-title em {
+      font-style: italic;
+      color: var(--ash);
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .contact-line {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .contact-line-label {
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .contact-line-value {
+      font-size: 0.85rem;
+      color: var(--ink);
+      letter-spacing: 0.03em;
+    }
+
+    .contact-line-value a {
+      color: var(--navy);
+      text-decoration: none;
+      border-bottom: 1px solid var(--mist);
+      transition: border-color 0.2s;
+    }
+
+    .contact-line-value a:hover {
+      border-color: var(--gold);
+    }
+
+    /* ── FOOTER ──────────────────────────────────── */
+    footer {
+      padding: 1.8rem 4rem;
+      background: var(--navy);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-left {
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.3);
+      text-transform: uppercase;
+    }
+
+    .footer-right {
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.3);
+      text-transform: uppercase;
+    }
+
+    /* ── FADE IN ─────────────────────────────────── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────── */
+    @media (max-width: 900px) {
+      header { padding: 1.2rem 1.5rem; }
+      nav { gap: 1.2rem; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left, .hero-right { padding: 4rem 2rem; }
+      #services { padding: 4rem 1.5rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      #clients { padding: 4rem 1.5rem; }
+      .clients-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .clients-grid { grid-template-columns: 1fr; }
+      #credentials { padding: 4rem 1.5rem; }
+      .credentials-grid { grid-template-columns: 1fr 1fr; }
+      #contact { padding: 4rem 1.5rem; }
+      .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+      footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+      .rule { margin: 0 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="wordmark">ESV Consulting</div>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#clients">Who We Serve</a>
+      <a href="#credentials">Credentials</a>
+      <a href="#contact">Contact</a>
+      <a href="ESV_Capability_Statement_v3.pdf" download class="nav-cta">Capability Statement</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">ESV Consulting LLC</p>
+      <h1 class="hero-title">
+        We find<br>
+        what is broken<br>
+        <em>before it breaks you.</em>
+      </h1>
+      <p class="hero-sub">
+        Cybersecurity Advisory and IT Diagnostic Consulting
+        for Federal and Commercial Organizations.
+        15 years of applied operations experience.
+        CISSP certified. Veteran-Owned.
+      </p>
+    </div>
+    <div class="hero-right">
+      <p class="hero-statement">
+        Most organizations know something is wrong.<br>
+        Few can name it precisely.<br><br>
+        <strong>We diagnose the root cause — not the symptom.</strong>
+        Then we tell leadership exactly what it means
+        and what needs to happen next.
+      </p>
+      <div class="credentials-row">
+        <span class="badge gold">CISSP</span>
+        <span class="badge">VOSB</span>
+        <span class="badge">SAM.gov</span>
+        <span class="badge">SBA Listed</span>
+        <span class="badge">CAGE: 18DR9</span>
+      </div>
+      <a href="ESV_Capability_Statement_v3.pdf" download class="download-btn">
+        <svg viewBox="0 0 24 24"><path d="M12 16l-6-6h4V4h4v6h4l-6 6zm-7 4h14v-2H5v2z"/></svg>
+        Download Capability Statement
+      </a>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <p class="section-label fade-in">What We Do</p>
+    <div class="services-grid">
+
+      <div class="service-block fade-in">
+        <div class="service-number">01</div>
+        <div class="service-name">Cybersecurity Advisory</div>
+        <p class="service-desc">
+          Structured assessment of your security posture — identifying real risk,
+          not theoretical vulnerability lists. We evaluate controls, alignment,
+          and readiness without vendor agenda.
+        </p>
+        <ul class="service-list">
+          <li>Cybersecurity Risk Assessment &amp; Gap Analysis</li>
+          <li>NIST CSF, CIS Controls &amp; FISMA Alignment</li>
+          <li>Risk Management Framework (RMF) Readiness</li>
+          <li>Incident Response Readiness Assessment</li>
+          <li>Security Controls Evaluation &amp; Documentation</li>
+        </ul>
+      </div>
+
+      <div class="service-block fade-in">
+        <div class="service-number">02</div>
+        <div class="service-name">IT Diagnostic Consulting</div>
+        <p class="service-desc">
+          We assess your IT infrastructure, identify what is undocumented,
+          misaligned, or exposed, and deliver findings leadership can act on
+          without a technical background.
+        </p>
+        <ul class="service-list">
+          <li>IT Infrastructure Diagnostic Review</li>
+          <li>Single Point of Failure Identification</li>
+          <li>Process Documentation &amp; Standardization</li>
+          <li>Continuity of Operations Planning (COOP)</li>
+          <li>IT Organizational Alignment Assessment</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WHO WE SERVE -->
+  <section id="clients">
+    <div class="clients-inner">
+      <div class="clients-left">
+        <p class="section-label fade-in">Who We Serve</p>
+        <h2 class="clients-title fade-in">
+          Organizations that cannot afford
+          to find out the hard way.
+        </h2>
+      </div>
+      <div class="clients-grid fade-in">
+        <div class="client-item">
+          <div class="client-name">Federal Agencies</div>
+          <div class="client-desc">Security posture, RMF readiness, and IT risk assessment for government organizations.</div>
+        </div>
+        <div class="client-item">
+          <div class="client-name">Federal Contractors</div>
+          <div class="client-desc">Subcontracting and teaming arrangements with established prime contractors.</div>
+        </div>
+        <div class="client-item">
+          <div class="client-name">Small &amp; Mid-Size Enterprises</div>
+          <div class="client-desc">Enterprise-level cybersecurity thinking without the enterprise price tag.</div>
+        </div>
+        <div class="client-item">
+          <div class="client-name">Nonprofit Organizations</div>
+          <div class="client-desc">Mission-aligned organizations that need IT clarity without the overhead.</div>
+        </div>
+        <div class="client-item">
+          <div class="client-name">Financial Services</div>
+          <div class="client-desc">Risk identification and controls assessment for compliance-sensitive environments.</div>
+        </div>
+        <div class="client-item">
+          <div class="client-name">Healthcare Organizations</div>
+          <div class="client-desc">Security and operational risk review for environments where failure has human consequences.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREDENTIALS -->
+  <section id="credentials">
+    <p class="section-label fade-in">Credentials &amp; Registration</p>
+    <div class="credentials-grid fade-in">
+      <div class="credential-item">
+        <div class="credential-value">CISSP</div>
+        <div class="credential-label">Active Certification</div>
+      </div>
+      <div class="credential-item">
+        <div class="credential-value">VOSB</div>
+        <div class="credential-label">Veteran-Owned Small Business</div>
+      </div>
+      <div class="credential-item">
+        <div class="credential-value">18DR9</div>
+        <div class="credential-label">CAGE Code</div>
+      </div>
+      <div class="credential-item">
+        <div class="credential-value">Active</div>
+        <div class="credential-label">SAM.gov Registration</div>
+      </div>
+      <div class="credential-item">
+        <div class="credential-value">SBA</div>
+        <div class="credential-label">SBA Registered</div>
+      </div>
+      <div class="credential-item">
+        <div class="credential-value">15+</div>
+        <div class="credential-label">Years IT Operations</div>
+      </div>
+      <div class="credential-item">
+        <div class="credential-value">541512</div>
+        <div class="credential-label">Primary NAICS</div>
+      </div>
+      <div class="credential-item">
+        <div class="credential-value">HUECZNGBNWY7</div>
+        <div class="credential-label">SAM.gov UEI</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-inner">
+      <div>
+        <p class="section-label fade-in">Get In Touch</p>
+        <h2 class="contact-title fade-in">
+          Let's identify<br>
+          what your organization<br>
+          <em>doesn't know it doesn't know.</em>
+        </h2>
+      </div>
+      <div class="contact-details fade-in">
+        <div class="contact-line">
+          <span class="contact-line-label">Email</span>
+          <span class="contact-line-value">
+            <a href="mailto:info@esvconsulting.io">info@esvconsulting.io</a>
+          </span>
+        </div>
+        <div class="contact-line">
+          <span class="contact-line-label">Web</span>
+          <span class="contact-line-value">esvconsulting.io</span>
+        </div>
+        <div class="contact-line">
+          <span class="contact-line-label">Location</span>
+          <span class="contact-line-value">New Jersey — Remote Nationwide</span>
+        </div>
+        <div class="contact-line">
+          <span class="contact-line-label">Capability Statement</span>
+          <span class="contact-line-value">
+            <a href="ESV_Capability_Statement_v3.pdf" download>Download PDF</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">© 2026 ESV Consulting LLC · All Rights Reserved</div>
+    <div class="footer-right">CISSP · VOSB · CAGE 18DR9 · UEI HUECZNGBNWY7</div>
+  </footer>
+
+  <script>
+    // Fade in on scroll
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.12 }
+    );
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
